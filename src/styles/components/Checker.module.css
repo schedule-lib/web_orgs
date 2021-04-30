@@ -1,0 +1,93 @@
+.checkerContainer {
+  margin-top: 0.7rem;
+}
+.checkerContainer > span {
+  background: var(--white);
+  border-radius: 0.6rem;
+  padding: 0.2rem;
+
+  display: inline-block;
+  margin: 1rem 0;
+}
+
+.form {
+  min-height: 6rem;
+  padding: 0.7rem 0.5rem;
+
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  border-radius: 0.3rem;
+}
+
+.form > h4 {
+  font-weight: 500;
+}
+
+.form > div {
+  display: flex;
+  margin-top: 0.5rem;
+}
+
+.form > div input {
+  border: 0.1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 0.6rem;
+
+  height: 2rem;
+  padding: 0.5rem;
+  margin-right: 2rem;
+  font-size: 1.2rem;
+  color: var(--text);
+}
+
+.form > div button {
+  height: 2rem;
+  width: 7rem;
+  border: 0;
+  /* font-weight: bold; */
+  padding: 0.1rem 0.2rem;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 0.2rem;
+  color: var(--background-weak);
+  background: var(--green);
+
+  transition: background-color 0.2s;
+}
+
+.form > div button:hover {
+  background: var(--green-light);
+}
+
+/* PROTOCOL */
+
+.protocol {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  max-width: 30rem;
+  margin: 0.8rem auto;
+  padding: 1rem;
+  line-height: 1.7rem;
+
+  background: var(--white);
+}
+
+.protocol > div {
+  background: var(--background-light);
+  border-radius: 0.6rem;
+
+  padding: 0.1rem 0.5rem;
+}
+
+.protocol > div.protoBlock {
+  display: flex;
+}
+
+.protocol > span,
+.protocol > strong {
+  padding: 0 0.5rem;
+  line-height: 1.7rem;
+}

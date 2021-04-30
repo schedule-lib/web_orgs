@@ -39,6 +39,10 @@ html {
   font-size: 93.8%;
 }
 
+/* #__next {
+  background: var(--background-light);
+} */
+
 body,
 html,
 .container {

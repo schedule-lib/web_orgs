@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import Checker from "../components/checker/Checker";
 
 // COMPONENTS
 import Services from "../components/services/Services";
@@ -7,6 +8,8 @@ import Services from "../components/services/Services";
 import styles from "../styles/pages/Home.module.css";
 
 function pages() {
+  const [isCreating, setIsCreating] = useState(true);
+
   return (
     <div className={styles.container}>
       <aside>
@@ -38,7 +41,7 @@ function pages() {
           <div>+</div>
         </div>
 
-        <Services />
+        {isCreating ? <Checker /> : <Services />}
       </article>
     </div>
   );
