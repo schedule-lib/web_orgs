@@ -35,6 +35,10 @@
   --panel-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.3);
 }
 
+html {
+  font-size: 93.8%;
+}
+
 body,
 html,
 .container {

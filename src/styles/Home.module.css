@@ -6,7 +6,8 @@
   max-height: 330px;
   width: 100%;
 
-  background: var(--white);
+  background: var(--background-light);
+  border-radius: 0.2rem;
   margin: auto;
   padding: 30px;
   margin-top: 5rem;
