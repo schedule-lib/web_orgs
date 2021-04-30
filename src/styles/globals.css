@@ -127,7 +127,7 @@ button.new:focus {
   background: var(--green-light);
 }
 
-.panel-shadow:hover {
+.panelShadow:hover {
   box-shadow: var(--panel-shadow);
 }
 
