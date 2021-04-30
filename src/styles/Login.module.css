@@ -65,9 +65,7 @@ button.default {
   transition: background-color 0.2s ease-in;
 }
 
-button.default:hover,
-button.default:active,
-button.default:focus {
+button.default:hover {
   background: var(--blue);
 }
 
