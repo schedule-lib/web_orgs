@@ -2,6 +2,8 @@
   display: flex;
   flex-direction: row;
   background: var(--background-light);
+
+  min-height: 100vh;
 }
 
 /* ------ ASIDE ----- */

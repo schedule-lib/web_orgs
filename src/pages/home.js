@@ -10,6 +10,10 @@ import styles from "../styles/pages/Home.module.css";
 function pages() {
   const [isCreating, setIsCreating] = useState(true);
 
+  function handleCreateService() {
+    setIsCreating(!isCreating);
+  }
+
   return (
     <div className={styles.container}>
       <aside>
@@ -32,7 +36,13 @@ function pages() {
           </ul>
         </div>
 
-        <button className={styles.default}>novo serviço</button>
+        <button
+          onClick={handleCreateService}
+          type="button"
+          className={styles.default}
+        >
+          novo serviço
+        </button>
       </aside>
 
       <article className={styles.rightContainer}>
