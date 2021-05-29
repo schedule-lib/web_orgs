@@ -1,18 +1,60 @@
-import React from "react";
+import React, { useState, memo, useEffect, useCallback } from "react";
 import { useRouter } from "next/router";
+import { useCookies } from "react-cookie";
+import api from "../services/api";
 
 import styles from "../styles/Login.module.css";
 
 function Home() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const router = useRouter();
 
-  function handleSubmit(event) {
+  const [cookies, setCookie] = useCookies(["token"]);
+
+  async function handleSubmit(event) {
     event.preventDefault();
 
-    router.push("/home", {
-      username: "eliasallex",
-    });
+    if (!email && !password) {
+      alert("Informações incorretas");
+      return;
+    }
+
+    let eml = email.trim();
+    let psw = password.trim();
+
+    try {
+      const response = await api
+        .post("/agency/sessions", {
+          email: eml,
+          password: psw,
+        })
+        .catch((error) => {
+          console.log(error.message);
+          return;
+        });
+
+      const { token, agency } = response.data;
+
+      setCookie("token", String(`Bearer ${token}`));
+      setCookie("agency", String(agency.email));
+
+      router.push("/home");
+    } catch (error) {
+      alert("AGÊNCIA não encontrada");
+    }
   }
+  const userAlreadyLoggedIn = useCallback(() => {
+    if (!cookies.token && !cookies.agency) return;
+
+    router.push("/home");
+  }, [cookies]);
+
+  useEffect(() => {
+    document.title = "Login | Scheduler service";
+
+    userAlreadyLoggedIn();
+  }, [router, cookies]);
 
   return (
     <div className={styles.container}>
@@ -20,8 +62,10 @@ function Home() {
 
       <form className={styles.form}>
         <div className={styles.group}>
-          <label for="email">Identificador</label>
+          <label htmlFor="email">Identificador</label>
           <input
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             type="email"
             placeholder="id"
             name="email"
@@ -31,8 +75,10 @@ function Home() {
         </div>
 
         <div className={styles.group}>
-          <label>Senha secreta:</label>
+          <label htmlFor="password">Senha secreta:</label>
           <input
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
             type="password"
             id="password"
             placeholder="password"
@@ -55,4 +101,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default memo(Home);
