@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Checker from "../components/checker/Checker";
+import LogOut from "../components/LogOut";
 
 // COMPONENTS
 import Services from "../components/services/Services";
@@ -48,7 +49,9 @@ function pages() {
       <article className={styles.rightContainer}>
         <div className={styles.agencyHeader}>
           <h4>Agência bancaria AOA</h4>
-          <div>+</div>
+          <div>
+            <LogOut />
+          </div>
         </div>
 
         {isCreating ? <Checker /> : <Services />}
