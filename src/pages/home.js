@@ -1,19 +1,43 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useCallback } from "react";
+import { useCookies } from "react-cookie";
+import api from "../services/api";
+
 import Checker from "../components/checker/Checker";
 import LogOut from "../components/LogOut";
-
-// COMPONENTS
 import Services from "../components/services/Services";
-
-// Statics
 import styles from "../styles/pages/Home.module.css";
 
 function pages() {
+  const [data, setData] = useState([]);
   const [isCreating, setIsCreating] = useState(true);
+
+  const [cookies] = useCookies(["token"]);
 
   function handleCreateService() {
     setIsCreating(!isCreating);
   }
+
+  const getDatas = useCallback(async () => {
+    try {
+      const response = await api.get(
+        `/services/agencies/${String(cookies.agency).trim()}`,
+        {
+          Headers: {
+            Authorization: "Bearer " + String(cookies.token),
+          },
+        }
+      );
+
+      const { data } = response;
+      setData(data);
+    } catch (error) {
+      alert("Error: " + error.message);
+    }
+  }, [cookies]);
+
+  useEffect(() => {
+    getDatas();
+  }, [cookies]);
 
   return (
     <div className={styles.container}>
@@ -25,15 +49,15 @@ function pages() {
             <h5>serviços existentes:</h5>
           </div>
           <ul className={styles.listAside}>
-            <li>
-              <a href="#">criar novo</a>
-            </li>
-            <li>
-              <a href="#">alterar cartao</a>
-            </li>
-            <li>
-              <a href="#">falar com agencia</a>
-            </li>
+            {data.length >= 1 ? (
+              data.map((service) => (
+                <li key={service.id}>
+                  <a href="#">{service.name}</a>
+                </li>
+              ))
+            ) : (
+              <h1>Comece criando novo serviço</h1>
+            )}
           </ul>
         </div>
 
