@@ -1,0 +1,16 @@
+.loaderContainer {
+  position: absolute;
+  z-index: 2;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  right: 0.7rem;
+  background: var(--header-background);
+  border: 0;
+  border-radius: 0.4rem;
+
+  height: 85px;
+  width: 85px;
+}

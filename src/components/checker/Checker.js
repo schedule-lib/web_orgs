@@ -1,12 +1,15 @@
 import React, { useState } from "react";
+import { FiBook } from "react-icons/fi";
 import api from "../../services/api";
 
+import Loader from "../Loader";
 import styles from "../../styles/components/Checker.module.css";
 
 function Checker() {
   const [data, setData] = useState([]);
   const [idProtocol, setIdProtocol] = useState("");
   const [isVerifying, setIsVerifying] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   async function handleVerify() {
     if (!idProtocol) {
@@ -14,6 +17,7 @@ function Checker() {
     }
 
     try {
+      setIsLoading(true);
       const response = await api.get(`/scheduler/${String(idProtocol).trim()}`);
       const { data } = response;
 
@@ -22,6 +26,7 @@ function Checker() {
       alert("Erro na conexão");
     }
 
+    setIsLoading(false);
     setIsVerifying(true);
   }
 
@@ -30,7 +35,8 @@ function Checker() {
       return data.map((schedule) => (
         <div key={schedule.id} className={styles.protocol}>
           <div>
-            <span>Horário agendado 👍</span>
+            <h1>Horário agendado</h1>
+            <FiBook color="#5929cc" />
           </div>
 
           <strong>protocolo: {schedule.code}</strong>
@@ -75,6 +81,8 @@ function Checker() {
       </form>
 
       {ComponentVerification()}
+
+      {isLoading && <Loader />}
     </div>
   );
 }
