@@ -17,6 +17,16 @@ function Services({ unmount }) {
   const [cookies] = useCookies(["token"]);
 
   async function createNewService() {
+    if (
+      !serviceName ||
+      !province ||
+      !servicePoint ||
+      !startHour ||
+      !endHour ||
+      !months
+    )
+      return alert("Preencha todos os campo!");
+
     try {
       await api
         .post(
@@ -89,6 +99,7 @@ function Services({ unmount }) {
                 type="text"
                 name="tipo"
                 placeholder="ex: luanda"
+                required
               />
             </div>
 
@@ -114,9 +125,10 @@ function Services({ unmount }) {
               <input
                 value={startHour}
                 onChange={(e) => setStartHour(e.target.value)}
-                type="text"
-                name="tipo"
+                type="time"
+                name="init"
                 placeholder="ex: 08:30"
+                required
               />
             </div>
 
@@ -125,9 +137,10 @@ function Services({ unmount }) {
               <input
                 value={endHour}
                 onChange={(e) => setEndHour(e.target.value)}
-                type="text"
-                name="tipo"
+                type="time"
+                name="end"
                 placeholder="ex: 18:00"
+                required
               />
             </div>
           </div>
