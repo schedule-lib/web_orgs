@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { useCookies } from "react-cookie";
 import api from "../../services/api";
 
+import { transformIDInMonthName } from "../../utils";
+
 import styles from "../../styles/components/Services.module.css";
 
 function Services({ unmount }) {
@@ -10,7 +12,7 @@ function Services({ unmount }) {
   const [servicePoint, setServicePoint] = useState("");
   const [startHour, setStartHour] = useState("");
   const [endHour, setEndHour] = useState("");
-  const [months, setMonths] = useState({});
+  const [months, setMonths] = useState([]);
 
   const [cookies] = useCookies(["token"]);
 
@@ -28,7 +30,7 @@ function Services({ unmount }) {
               },
             ],
             agency_owner: cookies.agency.trim(),
-            months: ["Abril", "Março", "junho", "Agosto"],
+            months: transformIDInMonthName(months),
             name: serviceName.trim(),
             end_hours: endHour.trim(),
             start_hours: startHour.trim(),
@@ -46,6 +48,18 @@ function Services({ unmount }) {
     } catch (error) {
       alert("Error: " + error.message);
     }
+  }
+  function monthIsSelected(monthKey) {
+    return months.includes(monthKey);
+  }
+  function handleMonthSelection(monthKey) {
+    if (monthIsSelected(monthKey)) {
+      const newMonths = months.filter((element) => element !== monthKey);
+      setMonths(newMonths);
+      return;
+    }
+
+    setMonths((months) => [...months, monthKey]);
   }
 
   return (
@@ -130,20 +144,100 @@ function Services({ unmount }) {
             </div>
 
             <div className={styles.monthsBlock}>
-              <div className={`${styles.month} ${styles.clicked}`}>JANEIRO</div>
-              <div className={styles.month}>FEVEREIRO</div>
-              <div className={styles.month}>MARÇO</div>
-              <div className={styles.month}>ABRIL</div>
-              <div className={styles.month}>MAIO</div>
-              <div className={`${styles.month} ${styles.clicked}`}>JUNHO</div>
-              <div className={styles.month}>JULHO</div>
-              <div className={`${styles.month} ${styles.clicked}`}>AGOSTO</div>
-              <div className={styles.month}>SETEMBRO</div>
-              <div className={`${styles.month} ${styles.clicked}`}>OUTUBRO</div>
-              <div className={`${styles.month} ${styles.clicked}`}>
+              <div
+                onClick={() => handleMonthSelection(0)}
+                className={`${styles.month} ${
+                  monthIsSelected(0) ? styles.clicked : ""
+                }`}
+              >
+                JANEIRO
+              </div>
+              <div
+                onClick={() => handleMonthSelection(1)}
+                className={`${styles.month} ${
+                  monthIsSelected(1) ? styles.clicked : ""
+                }`}
+              >
+                FEVEREIRO
+              </div>
+              <div
+                onClick={() => handleMonthSelection(2)}
+                className={`${styles.month} ${
+                  monthIsSelected(2) ? styles.clicked : ""
+                }`}
+              >
+                MARÇO
+              </div>
+              <div
+                onClick={() => handleMonthSelection(3)}
+                className={`${styles.month} ${
+                  monthIsSelected(3) ? styles.clicked : ""
+                }`}
+              >
+                ABRIL
+              </div>
+              <div
+                onClick={() => handleMonthSelection(4)}
+                className={`${styles.month} ${
+                  monthIsSelected(4) ? styles.clicked : ""
+                }`}
+              >
+                MAIO
+              </div>
+              <div
+                onClick={() => handleMonthSelection(5)}
+                className={`${styles.month} ${
+                  monthIsSelected(5) ? styles.clicked : ""
+                }`}
+              >
+                JUNHO
+              </div>
+              <div
+                onClick={() => handleMonthSelection(6)}
+                className={`${styles.month} ${
+                  monthIsSelected(6) ? styles.clicked : ""
+                }`}
+              >
+                JULHO
+              </div>
+              <div
+                onClick={() => handleMonthSelection(7)}
+                className={`${styles.month} ${
+                  monthIsSelected(7) ? styles.clicked : ""
+                }`}
+              >
+                AGOSTO
+              </div>
+              <div
+                onClick={() => handleMonthSelection(8)}
+                className={`${styles.month} ${
+                  monthIsSelected(8) ? styles.clicked : ""
+                }`}
+              >
+                SETEMBRO
+              </div>
+              <div
+                onClick={() => handleMonthSelection(9)}
+                className={`${styles.month} ${
+                  monthIsSelected(9) ? styles.clicked : ""
+                }`}
+              >
+                OUTUBRO
+              </div>
+              <div
+                onClick={() => handleMonthSelection(10)}
+                className={`${styles.month} ${
+                  monthIsSelected(10) ? styles.clicked : ""
+                }`}
+              >
                 NOVEMBRO
               </div>
-              <div className={`${styles.month} ${styles.clicked}`}>
+              <div
+                onClick={() => handleMonthSelection(11)}
+                className={`${styles.month} ${
+                  monthIsSelected(11) ? styles.clicked : ""
+                }`}
+              >
                 DEZEMBRO
               </div>
             </div>
