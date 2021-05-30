@@ -54,7 +54,7 @@ function pages() {
           </div>
         </div>
 
-        {isCreating ? <Checker /> : <Services />}
+        {isCreating ? <Checker /> : <Services unmount={handleCreateService} />}
       </article>
     </div>
   );

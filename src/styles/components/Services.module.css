@@ -1,14 +1,17 @@
-article div.servicesContainer {
-  display: flex;
+.servicesContainer {
+  display: column;
   flex-direction: row;
   flex-wrap: wrap;
 
   height: 100%;
   margin-bottom: 1rem;
-  overflow: auto;
 }
 
-div.servicesContainer div.serviceBlock {
+.servicesContainer > main {
+  display: flex;
+}
+
+.servicesContainer > main div.serviceBlock {
   display: flex;
   flex-direction: column;
 
@@ -91,4 +94,33 @@ div.monthsBlock div.month.clicked {
 }
 .panelShadow:hover {
   box-shadow: var(--panel-shadow);
+}
+
+/* FOOTER */
+
+.footerContainer button {
+  min-width: 20rem;
+  height: 2rem;
+
+  border: 0;
+  border-radius: 0.2rem;
+  color: var(--background);
+  background: var(--green);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-weight: bold;
+  padding: 0.1rem 0.2rem;
+  margin: 0 auto;
+}
+.footerContainer button:hover {
+  background: var(--green-light);
+}
+@media (max-width: 800px) {
+  .footerContainer button {
+    min-width: auto;
+    padding: 0.3rem 1rem;
+  }
 }
