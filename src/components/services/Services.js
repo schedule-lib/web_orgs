@@ -13,6 +13,7 @@ function Services({ unmount }) {
   const [startHour, setStartHour] = useState("");
   const [endHour, setEndHour] = useState("");
   const [months, setMonths] = useState([]);
+  const [totalPeople, setTotalPeople] = useState(0);
 
   const [cookies] = useCookies(["token"]);
 
@@ -23,7 +24,8 @@ function Services({ unmount }) {
       !servicePoint ||
       !startHour ||
       !endHour ||
-      !months
+      !months ||
+      !totalPeople
     )
       return alert("Preencha todos os campo!");
 
@@ -45,6 +47,7 @@ function Services({ unmount }) {
             end_hours: endHour.trim(),
             start_hours: startHour.trim(),
             on_weekends: false,
+            total_people: totalPeople,
           },
           {
             Headers: {
@@ -253,6 +256,26 @@ function Services({ unmount }) {
               >
                 DEZEMBRO
               </div>
+            </div>
+          </div>
+
+          <div className={`${styles.serviceBlock} ${styles.panelShadow}`}>
+            <div>
+              <h5>Marcação</h5>
+            </div>
+
+            <div className={styles.packetService}>
+              <strong>Total de pessoas por dia</strong>
+              <input
+                value={totalPeople}
+                onChange={(e) => setTotalPeople(e.target.value)}
+                type="number"
+                min="1"
+                max="100"
+                name="total_people"
+                className={styles.defaultNumber}
+                required
+              />
             </div>
           </div>
         </div>
