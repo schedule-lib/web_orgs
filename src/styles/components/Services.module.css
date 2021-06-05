@@ -85,7 +85,7 @@ div.monthsBlock div.month {
   cursor: pointer;
 }
 div.monthsBlock div.month.clicked {
-  background: var(--background);
+  background: var(--text-highlight);
   border-radius: 0.6rem;
 }
 
@@ -123,4 +123,8 @@ div.monthsBlock div.month.clicked {
     min-width: auto;
     padding: 0.3rem 1rem;
   }
+}
+
+div.packetService input.defaultNumber {
+  width: 4rem;
 }
