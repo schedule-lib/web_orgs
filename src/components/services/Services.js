@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useCookies } from "react-cookie";
 import api from "../../services/api";
 
-import { transformIDInMonthName } from "../../utils";
+import { transformIDInMonthName, transformKeyInDayName } from "../../utils";
 
 import styles from "../../styles/components/Services.module.css";
 
@@ -26,7 +26,8 @@ function Services({ unmount }) {
       !startHour ||
       !endHour ||
       !months ||
-      !totalPeople
+      !totalPeople ||
+      !days
     )
       return alert("Preencha todos os campo!");
 
@@ -44,6 +45,7 @@ function Services({ unmount }) {
             ],
             agency_owner: cookies.agency.trim(),
             months: transformIDInMonthName(months),
+            days: transformKeyInDayName(days),
             name: serviceName.trim(),
             end_hours: endHour.trim(),
             start_hours: startHour.trim(),
