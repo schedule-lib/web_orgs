@@ -1,3 +1,3 @@
-import transformIDInMonthName from "./transformIDInMonthName";
+import { transformIDInMonthName } from "./transformIDInMonthName";
 
 export { transformIDInMonthName };

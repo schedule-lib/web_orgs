@@ -1,4 +1,4 @@
-export default (months = []) => {
+const transformIDInMonthName = (months = []) => {
   if (!(typeof months === "object")) return months;
 
   let monthNames = [];
@@ -46,3 +46,5 @@ export default (months = []) => {
 
   return monthNames;
 };
+
+export { transformIDInMonthName }

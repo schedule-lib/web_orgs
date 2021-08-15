@@ -13,6 +13,7 @@ function Services({ unmount }) {
   const [startHour, setStartHour] = useState("");
   const [endHour, setEndHour] = useState("");
   const [months, setMonths] = useState([]);
+  const [days, setDays] = useState([]);
   const [totalPeople, setTotalPeople] = useState(0);
 
   const [cookies] = useCookies(["token"]);
@@ -73,6 +74,18 @@ function Services({ unmount }) {
     }
 
     setMonths((months) => [...months, monthKey]);
+  }
+  function dayIsSelected(day) {
+    return days.includes(day);
+  }
+  function handleDaySelection(dayKey) {
+    if(dayIsSelected(dayKey)) {
+      const newDays = days.filter(day => day !== dayKey);
+      setDays(newDays)
+      return;
+    }
+
+    setDays((oldDays) => [...oldDays, dayKey]);
   }
 
   return (
@@ -255,6 +268,75 @@ function Services({ unmount }) {
                 }`}
               >
                 DEZEMBRO
+              </div>
+            </div>
+          </div>
+
+          <div className={`${styles.serviceBlock} ${styles.panelShadow}`}>
+            <div id={styles.serviceMonth}>
+              <strong>
+                Dias de atendimento
+              </strong>
+
+              <small>clique nos dias para selecionar</small>
+            </div>
+
+            <div className={styles.monthsBlock}>
+              <div
+                onClick={() => handleDaySelection(1)}
+                className={`${styles.month} ${
+                  dayIsSelected(1) ? styles.clicked : ""
+                }`}
+              >
+                SEGUNDA
+              </div>
+              <div
+                onClick={() => handleDaySelection(2)}
+                className={`${styles.month} ${
+                  dayIsSelected(2) ? styles.clicked : ""
+                }`}
+              >
+                TERÇA
+              </div>
+              <div
+                onClick={() => handleDaySelection(3)}
+                className={`${styles.month} ${
+                  dayIsSelected(3) ? styles.clicked : ""
+                }`}
+              >
+                QUARTA
+              </div>
+              <div
+                onClick={() => handleDaySelection(4)}
+                className={`${styles.month} ${
+                  dayIsSelected(4) ? styles.clicked : ""
+                }`}
+              >
+                QUINTA
+              </div>
+              <div
+                onClick={() => handleDaySelection(5)}
+                className={`${styles.month} ${
+                  dayIsSelected(5) ? styles.clicked : ""
+                }`}
+              >
+                SEXTA
+              </div>
+              <div
+                onClick={() => handleDaySelection(6)}
+                className={`${styles.month} ${
+                  dayIsSelected(6) ? styles.clicked : ""
+                }`}
+              >
+                SÁBADO
+              </div>
+              <div
+                onClick={() => handleDaySelection(7)}
+                className={`${styles.month} ${
+                  dayIsSelected(7) ? styles.clicked : ""
+                }`}
+              >
+                DOMINGO
               </div>
             </div>
           </div>
